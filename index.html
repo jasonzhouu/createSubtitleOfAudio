@@ -1,0 +1,22 @@
+<div id="waveform"></div>
+<button onclick="wavesurfer.playPause()">pause</button>
+<button onclick="printTime()">print current time</button>
+
+<script src="https://unpkg.com/wavesurfer.js"></script>
+
+<script>
+var wavesurfer = WaveSurfer.create({
+    container: '#waveform'
+});
+wavesurfer.load('./xwz1.mp3');
+wavesurfer.on('ready', function () {
+    wavesurfer.play();
+});
+
+function printTime() {
+    var time = wavesurfer.getCurrentTime();
+    var timeItem = document.createElement('li')
+    timeItem.textContent = time
+    document.body.append(timeItem)
+}
+</script>
