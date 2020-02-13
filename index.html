@@ -2,7 +2,7 @@
 <button onclick="wavesurfer.playPause()">pause</button>
 <button onclick="sentenceStart()">sentence start</button>
 <button onclick="sentenceEnd()">sentence end</button>
-
+<input type="text" id="note">
 
 <script src="https://unpkg.com/wavesurfer.js"></script>
 
@@ -14,20 +14,38 @@
     wavesurfer.on('ready', function () {
         wavesurfer.play();
     });
+    var timeSlice = [];
 
-    function printTime(note) {
+    function printTime(prefix) {
         var time = wavesurfer.getCurrentTime();
         var timeItem = document.createElement('li')
-        timeItem.textContent = note + time
+        timeItem.textContent = prefix + time
         document.body.append(timeItem)
     }
 
     function sentenceStart() {
         printTime('start: ')
+        var start = wavesurfer.getCurrentTime();
+        timeSlice.push({
+            start
+        })
+    }
+
+    function addDataToTimeSliceArray(dataType, data) {
+        var l = timeSlice.length
+        var currentSlice = timeSlice[l - 1]
+        currentSlice[dataType] = data
     }
 
     function sentenceEnd() {
-        printTime('stop: ');
+        printTime('end: ');
+        var end = wavesurfer.getCurrentTime();
+        addDataToTimeSliceArray('end', end)
     }
+
+    var input = document.getElementById('note')
+    input.addEventListener('input', (e) => {
+        addDataToTimeSliceArray('note', e.target.value)
+    })
 
 </script>
