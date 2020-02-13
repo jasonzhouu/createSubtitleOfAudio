@@ -1,22 +1,33 @@
 <div id="waveform"></div>
 <button onclick="wavesurfer.playPause()">pause</button>
-<button onclick="printTime()">print current time</button>
+<button onclick="sentenceStart()">sentence start</button>
+<button onclick="sentenceEnd()">sentence end</button>
+
 
 <script src="https://unpkg.com/wavesurfer.js"></script>
 
 <script>
-var wavesurfer = WaveSurfer.create({
-    container: '#waveform'
-});
-wavesurfer.load('./xwz1.mp3');
-wavesurfer.on('ready', function () {
-    wavesurfer.play();
-});
+    var wavesurfer = WaveSurfer.create({
+        container: '#waveform'
+    });
+    wavesurfer.load('./xwz1.mp3');
+    wavesurfer.on('ready', function () {
+        wavesurfer.play();
+    });
 
-function printTime() {
-    var time = wavesurfer.getCurrentTime();
-    var timeItem = document.createElement('li')
-    timeItem.textContent = time
-    document.body.append(timeItem)
-}
+    function printTime(note) {
+        var time = wavesurfer.getCurrentTime();
+        var timeItem = document.createElement('li')
+        timeItem.textContent = note + time
+        document.body.append(timeItem)
+    }
+
+    function sentenceStart() {
+        printTime('start: ')
+    }
+
+    function sentenceEnd() {
+        printTime('stop: ');
+    }
+
 </script>
