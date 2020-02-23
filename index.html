@@ -18,6 +18,8 @@
         button {
             border: 1px solid #ddd;
             padding: 10px;
+            display: block;
+            margin-bottom: 1em;
         }
 
         button:hover {
@@ -29,12 +31,21 @@
 <body>
     <div id="waveform"></div>
     <button id="audioController">播放</button>
-    <button id="start">句子开头</button>
-    <button id="end">句子结尾</button>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button id="start">句子开头</button>
+            </div>
+            <div class="col">
+                <button id="end">句子结尾</button>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">文稿</label>
+        <label for="exampleFormControlTextarea1">字幕</label>
         <textarea class="form-control" id="note" rows="3"></textarea>
     </div>
+    <button id="submit">确认</button>
 
     <script>
         $("#audioController").popover({
