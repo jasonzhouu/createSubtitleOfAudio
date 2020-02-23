@@ -14,18 +14,6 @@
     <script src="./jquery-3.4.1.js"></script>
     <script src="./bootstrap.bundle.js"></script>
     <script src="./wavesurfer.js"></script>
-    <style>
-        button {
-            border: 1px solid #ddd;
-            padding: 10px;
-            display: block;
-            margin-bottom: 1em;
-        }
-
-        button:hover {
-            background-color: antiquewhite;
-        }
-    </style>
 </head>
 
 <body>
@@ -39,9 +27,11 @@
         <div class="row">
             <div class="col">
                 <button id="start">句子开头</button>
+                <span></span>
             </div>
             <div class="col">
                 <button id="end">句子结尾</button>
+                <span></span>
             </div>
         </div>
     </div>
@@ -81,11 +71,12 @@
 
         $("#start").click(function () {
             currentSlice.start = wavesurfer.getCurrentTime();
-        }
-        )
+            $("#start + span").html(currentSlice.start)
+        })
 
         $("#end").click(function () {
             currentSlice.end = wavesurfer.getCurrentTime();
+            $("#end + span").html(currentSlice.end)
         })
 
         $("#submit").click(function () {
