@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小王子</title>
+</head>
+
+<body>
+    <audio id="player" src="./xwz.mp3" controls="controls"></audio>
+    <hr>
+    <button id="audioController">播放</button>
+
+    <script src="./jquery-3.4.1.js"></script>
+    <script>
+        $("#audioController").on("click", playMusic)
+        function playMusic() {
+            var player = $("#player")[0]; /*jquery对象转换成js对象*/
+            if (player.paused) { /*如果已经暂停*/
+                player.play(); /*播放*/
+            } else {
+                player.pause();/*暂停*/
+            }
+        }
+    </script>
+
+</body>
+
+</html>
