@@ -1,59 +1,74 @@
-<div id="waveform"></div>
-<button id="pause" onclick="wavesurfer.playPause()">pause</button>
-<button id="start">sentence start</button>
-<button id="end">sentence end</button>
-<input type="text" id="note">
+<!DOCTYPE html>
+<html lang="en">
 
-<script src="https://unpkg.com/wavesurfer.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小王子</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/wavesurfer.js/3.3.1/wavesurfer.min.js"></script>
+</head>
 
-<script>
-    var wavesurfer = WaveSurfer.create({
-        container: '#waveform'
-    });
-    wavesurfer.load('./xwz1.mp3');
-    wavesurfer.on('ready', function () {
-        wavesurfer.play();
-    });
-    var timeSlice = [];
+<body>
+    <div id="waveform"></div>
+    <button id="pause" onclick="wavesurfer.playPause()">pause</button>
+    <button id="start">sentence start</button>
+    <button id="end">sentence end</button>
+    <input type="text" id="note">
 
-    function printTime(prefix) {
-        var time = wavesurfer.getCurrentTime();
-        var timeItem = document.createElement('li')
-        timeItem.textContent = prefix + time
-        document.body.append(timeItem)
-    }
+    <script>
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform'
+        });
+        wavesurfer.load('./xwz1.mp3');
+        wavesurfer.on('ready', function () {
+            wavesurfer.play();
+        });
+        var timeSlice = [];
 
-    function sentenceStart() {
-        printTime('start: ')
-        var start = wavesurfer.getCurrentTime();
-        timeSlice.push({
-            start
+        function printTime(prefix) {
+            var time = wavesurfer.getCurrentTime();
+            var timeItem = document.createElement('li')
+            timeItem.textContent = prefix + time
+            document.body.append(timeItem)
+        }
+
+        function sentenceStart() {
+            printTime('start: ')
+            var start = wavesurfer.getCurrentTime();
+            timeSlice.push({
+                start
+            })
+        }
+
+        function addDataToTimeSliceArray(dataType, data) {
+            var l = timeSlice.length
+            var currentSlice = timeSlice[l - 1]
+            currentSlice[dataType] = data
+        }
+
+        function sentenceEnd() {
+            printTime('end: ');
+            var end = wavesurfer.getCurrentTime();
+            addDataToTimeSliceArray('end', end)
+        }
+
+        var startBtn = document.getElementById('start')
+        var stopBtn = document.getElementById('end')
+        startBtn.onclick = sentenceStart;
+        stopBtn.onclick = sentenceEnd;
+
+        var input = document.getElementById('note')
+        input.addEventListener('input', (e) => {
+            addDataToTimeSliceArray('note', e.target.value)
         })
-    }
-
-    function addDataToTimeSliceArray(dataType, data) {
-        var l = timeSlice.length
-        var currentSlice = timeSlice[l - 1]
-        currentSlice[dataType] = data
-    }
-
-    function sentenceEnd() {
-        printTime('end: ');
-        var end = wavesurfer.getCurrentTime();
-        addDataToTimeSliceArray('end', end)
-    }
-
-    var startBtn = document.getElementById('start')
-    var stopBtn = document.getElementById('end')
-    startBtn.onclick = sentenceStart;
-    stopBtn.onclick = sentenceEnd;
-
-    var input = document.getElementById('note')
-    input.addEventListener('input', (e) => {
-        addDataToTimeSliceArray('note', e.target.value)
-    })
 
     // @todo: 空格键控制pause/play
     // @todo: 导出 json 格式数据
 
-</script>
+    </script>
+</body>
+
+</html>
