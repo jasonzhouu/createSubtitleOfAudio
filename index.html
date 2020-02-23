@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    
+
     <button id="submit">确认</button>
 
     <script>
@@ -79,22 +79,20 @@
         var timeSlice = [];
         var currentSlice = {};
 
-        function printTime(prefix) {
-            var time = wavesurfer.getCurrentTime();
-            var timeItem = document.createElement('li')
-            timeItem.textContent = prefix + time
-            document.body.append(timeItem)
-        }
-
         $("#start").click(function () {
-                printTime('start: ')
-                currentSlice.start = wavesurfer.getCurrentTime();
-            }
+            currentSlice.start = wavesurfer.getCurrentTime();
+        }
         )
 
         $("#end").click(function () {
-            printTime('end: ');
             currentSlice.end = wavesurfer.getCurrentTime();
+        })
+
+        $("#submit").click(function () {
+            currentSlice.note = $("#note").val();
+            $("#note").val("");
+            timeSlice.push({...currentSlice});
+            currentSlice= {};
         })
 
         $("#audioController").on("click", function () {
