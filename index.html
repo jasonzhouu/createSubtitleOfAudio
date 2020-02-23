@@ -94,7 +94,7 @@
 
         $("#submit").click(function () {
             currentSlice.note = $("#note").val();
-            $("#note").val("");
+            clearData();
             timeSlice.push({ ...currentSlice });
             printSliceInfo();
             currentSlice = {};
@@ -112,6 +112,12 @@
                     $("<td></td>").html(currentSlice.note)
                 )
             )
+        }
+
+        function clearData() {
+            $("#start + span").html("");
+            $("#end + span").html("");
+            $("#note").val("");
         }
 
         $("#audioController").on("click", function () {
