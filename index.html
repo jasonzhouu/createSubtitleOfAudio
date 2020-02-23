@@ -19,6 +19,7 @@
             border: 1px solid #ddd;
             padding: 10px;
         }
+
         button:hover {
             background-color: antiquewhite;
         }
@@ -27,10 +28,13 @@
 
 <body>
     <div id="waveform"></div>
-    <button id="audioController">开始</button>
+    <button id="audioController">播放</button>
     <button id="start">句子开头</button>
     <button id="end">句子结尾</button>
-    <input type="text" id="note">
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">文稿</label>
+        <textarea class="form-control" id="note" rows="3"></textarea>
+    </div>
 
     <script>
         $("#audioController").popover({
@@ -69,13 +73,14 @@
             document.body.append(timeItem)
         }
 
-        function sentenceStart() {
-            printTime('start: ')
-            var start = wavesurfer.getCurrentTime();
-            timeSlice.push({
-                start
-            })
-        }
+        $("#start").click(function () {
+                printTime('start: ')
+                var start = wavesurfer.getCurrentTime();
+                timeSlice.push({
+                    start
+                })
+            }
+        )
 
         function addDataToTimeSliceArray(dataType, data) {
             var l = timeSlice.length
@@ -83,39 +88,33 @@
             currentSlice[dataType] = data
         }
 
-        function sentenceEnd() {
+        $("#end").click(function () {
             printTime('end: ');
             var end = wavesurfer.getCurrentTime();
             addDataToTimeSliceArray('end', end)
-        }
-
-        var startBtn = document.getElementById('start')
-        var stopBtn = document.getElementById('end')
-        startBtn.onclick = sentenceStart;
-        stopBtn.onclick = sentenceEnd;
+        })
 
         var input = document.getElementById('note')
         input.addEventListener('input', (e) => {
             addDataToTimeSliceArray('note', e.target.value)
         })
 
-        $("#audioController").on("click", function() {
+        $("#audioController").on("click", function () {
             wavesurfer.playPause()
             setAudioController()
         })
 
         function setAudioController() {
-            if(wavesurfer.isPlaying() == true) {
+            if (wavesurfer.isPlaying() == true) {
                 $("#audioController").html("暂停")
             } else {
-                $("#audioController").html("开始")
+                $("#audioController").html("播放")
             }
         }
 
     // @todo: 空格键控制pause/play
     // @todo: 导出 json 格式数据
 
-    // $("#audioController").
     </script>
 </body>
 
