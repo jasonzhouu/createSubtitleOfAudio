@@ -38,6 +38,19 @@
 
     <button id="submit">确认</button>
 
+    <table class="table" id="timeSliceTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">句子开始时间</th>
+                <th scope="col">句子结束时间</th>
+                <th scope="col">字幕</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
     <script>
         $("#audioController").popover({
             content: "暂停/开始",
@@ -82,9 +95,24 @@
         $("#submit").click(function () {
             currentSlice.note = $("#note").val();
             $("#note").val("");
-            timeSlice.push({...currentSlice});
-            currentSlice= {};
+            timeSlice.push({ ...currentSlice });
+            printSliceInfo();
+            currentSlice = {};
         })
+
+        function printSliceInfo() {
+            $("#timeSliceTable tbody").append(
+                $("<tr></tr>").append(
+                    $("<th></th>").html(timeSlice.length).attr("scope", "row")
+                ).append(
+                    $("<td></td>").html(currentSlice.start)
+                ).append(
+                    $("<td></td>").html(currentSlice.end)
+                ).append(
+                    $("<td></td>").html(currentSlice.note)
+                )
+            )
+        }
 
         $("#audioController").on("click", function () {
             wavesurfer.playPause()
