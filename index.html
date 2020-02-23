@@ -5,26 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小王子</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/wavesurfer.js/3.3.1/wavesurfer.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.16.1/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/wavesurfer.js/3.3.1/wavesurfer.min.js"></script> -->
+    <link rel="stylesheet" href="./bootstrap.css">
+    <script src="./jquery-3.4.1.js"></script>
+    <script src="./bootstrap.bundle.js"></script>
+    <script src="./wavesurfer.js"></script>
 </head>
 
 <body>
     <div id="waveform"></div>
-    <button id="pause" onclick="wavesurfer.playPause()">pause</button>
-    <button id="start">sentence start</button>
-    <button id="end">sentence end</button>
+    <button id="audioController">开始</button>
+    <button id="start">句子开头</button>
+    <button id="end">句子结尾</button>
     <input type="text" id="note">
 
     <script>
+        $("#audioController").popover({
+            content: "暂停/开始",
+            trigger: "hover",
+            delay: 200,
+            placement: "bottom",
+        })
+        $("#start").popover({
+            content: "获取这个句子开头的时间",
+            trigger: "hover",
+            delay: 200,
+            placement: "bottom",
+        })
+        $("#end").popover({
+            content: "获取这个句子结尾的时间",
+            trigger: "hover",
+            delay: 200,
+            placement: "bottom",
+        })
+
         var wavesurfer = WaveSurfer.create({
             container: '#waveform'
         });
         wavesurfer.load('./xwz1.mp3');
         wavesurfer.on('ready', function () {
-            wavesurfer.play();
+            // wavesurfer.play();
+            setAudioController();
         });
         var timeSlice = [];
 
@@ -65,9 +90,23 @@
             addDataToTimeSliceArray('note', e.target.value)
         })
 
+        $("#audioController").on("click", function() {
+            wavesurfer.playPause()
+            setAudioController()
+        })
+
+        function setAudioController() {
+            if(wavesurfer.isPlaying() == true) {
+                $("#audioController").html("暂停")
+            } else {
+                $("#audioController").html("开始")
+            }
+        }
+
     // @todo: 空格键控制pause/play
     // @todo: 导出 json 格式数据
 
+    // $("#audioController").
     </script>
 </body>
 
