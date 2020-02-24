@@ -94,10 +94,9 @@
 
         $("#submit").click(function () {
             currentSlice.note = $("#note").val();
-            clearData();
             timeSlice.push({ ...currentSlice });
             printSliceInfo();
-            currentSlice = {};
+            clearData();
         })
 
         function printSliceInfo() {
@@ -118,6 +117,7 @@
             $("#start + span").html("");
             $("#end + span").html("");
             $("#note").val("");
+            currentSlice = {};
         }
 
         $("#audioController").on("click", function () {
@@ -134,9 +134,12 @@
         }
 
     // @todo: 快捷键，f2控制pause/play，f3/f4控制开始/结尾
-    // @todo: 导出 json 格式数据
+    // @todo: 导出 json 格式数据，通过ipc发送json给main process，main process将其导出文件到下载目录
     // @todo: 拖入音频文件
 
+    function sendTimeSliceToMainProcess() {
+        
+    }
     </script>
 </body>
 
