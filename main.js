@@ -26,7 +26,7 @@ ipcMain.on('save-as-json-file', (event, arg) => {
     } else {
         status = "failed"
     }
-    event.reply('save-file-status', status)
+    event.reply('save-file-finished', status)
 })
 
 function saveJsonToFile(data) {

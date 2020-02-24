@@ -145,7 +145,7 @@
             ipcRenderer.send('save-as-json-file', timeSlice)
         })
 
-        ipcRenderer.on('save-file-status', (event, arg) => {
+        ipcRenderer.on('save-file-finished', (event, arg) => {
             console.log("save file: " + arg)
             
         })
