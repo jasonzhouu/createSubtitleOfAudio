@@ -54,7 +54,6 @@
     <script src="./static/jquery-3.4.1.js"></script>
     <script src="./static/bootstrap.bundle.js"></script>
     <script src="./static/wavesurfer.js"></script>
-    <script src="./index.js"></script>
     <script>
 
         $("#audioController").popover({
@@ -143,7 +142,12 @@
         // @todo: 拖入音频文件
 
         $("#saveToJsonFile").on("click", function () {
-            ipcRenderer.send('asynchronous-message', timeSlice)
+            ipcRenderer.send('save-as-json-file', timeSlice)
+        })
+
+        ipcRenderer.on('save-file-status', (event, arg) => {
+            console.log("save file: " + arg)
+            
         })
 
     </script>
