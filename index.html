@@ -50,6 +50,7 @@
         <tbody>
         </tbody>
     </table>
+    <button id="saveToJsonFile">save</button>
     <script src="./jquery-3.4.1.js"></script>
     <script src="./bootstrap.bundle.js"></script>
     <script src="./wavesurfer.js"></script>
@@ -137,10 +138,14 @@
             }
         }
 
-    // @todo: 快捷键，f2控制pause/play，f3/f4控制开始/结尾
-    // @todo: 导出 json 格式数据，通过ipc发送json给main process，main process将其导出文件到下载目录
-    // @todo: 拖入音频文件
-        
+        // @todo: 快捷键，f2控制pause/play，f3/f4控制开始/结尾
+        // @todo: 导出 json 格式数据，通过ipc发送json给main process，main process将其导出文件到下载目录
+        // @todo: 拖入音频文件
+
+        $("#saveToJsonFile").on("click", function () {
+            ipcRenderer.send('asynchronous-message', 'ping')
+        })
+
     </script>
 </body>
 
