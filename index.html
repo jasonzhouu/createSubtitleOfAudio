@@ -143,7 +143,7 @@
         // @todo: 拖入音频文件
 
         $("#saveToJsonFile").on("click", function () {
-            ipcRenderer.send('asynchronous-message', 'ping')
+            ipcRenderer.send('asynchronous-message', timeSlice)
         })
 
     </script>
