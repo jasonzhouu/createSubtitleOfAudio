@@ -44,6 +44,11 @@ function addEventToNewRow(newRow) {
 addNewRow()
 
 $("#addSlice").click(function(){
+    // @todo: 检查currentSlice是否符合要求，各属性不能为空
+    if(!isCurrentRowIsFinished()) {
+        alert("Can't add a new row before current row is finished")
+        return;
+    }
     // editableRow class的样式不一样。添加后，应该把这个样式去掉。
     $("#timeSliceTable tbody tr:last").removeClass("editableRow")
     $("#timeSliceTable tbody tr:last td").off("click")
@@ -53,10 +58,20 @@ $("#addSlice").click(function(){
         var endTime = parseFloat($(this).children("td").eq(1).html())
         wavesurfer.play(startTime, endTime)
     })
-    // @todo: 检查currentSlice是否符合要求，各属性不能为空
     addNewSlice()
     addNewRow()
 })
+
+function isCurrentRowIsFinished() {
+    if(currentSlice.start == null
+        || currentSlice.end == null
+        || currentSlice.note == null) {
+            // 只要有一项没有填写，就是就没有完成
+            return false;
+        } else {
+            return true;
+        }
+}
 
 
 export {timeSlice}
