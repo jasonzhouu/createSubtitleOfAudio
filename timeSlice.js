@@ -31,16 +31,6 @@ function clearData() {
     currentSlice = {};
 }
 
-// @todo: 快捷键，f2控制pause/play，f3/f4控制开始/结尾
-// @todo: 导出 json 格式数据，通过ipc发送json给main process，main process将其导出文件到下载目录
-// @todo: 拖入音频文件
 
-$("#saveToJsonFile").on("click", function () {
-    ipcRenderer.send('save-as-json-file', timeSlice)
-})
-
-ipcRenderer.on('save-file-finished', (event, arg) => {
-    console.log("save file: " + arg)
-})
 
 export {timeSlice, currentSlice}
