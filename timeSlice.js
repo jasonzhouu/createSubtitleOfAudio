@@ -33,7 +33,7 @@ $("#addSlice").click(function(){
     timeSlice.push({ ...currentSlice })
     currentSlice = {}
     console.log(timeSlice);
-    
+    addNewRow()
 })
 
 
