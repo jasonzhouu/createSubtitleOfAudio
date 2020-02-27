@@ -5,15 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小王子</title>
-    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.16.1/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/wavesurfer.js/3.3.1/wavesurfer.min.js"></script> -->
-
     <link rel="stylesheet" href="./static/bootstrap.css">
-
-
 </head>
 
 <body>
@@ -51,106 +43,17 @@
         </tbody>
     </table>
     <button id="saveToJsonFile">save</button>
+
+    <!-- 第三方库：jquery, boostrap, wavesurfer -->
     <script src="./static/jquery-3.4.1.js"></script>
     <script src="./static/bootstrap.bundle.js"></script>
     <script src="./static/wavesurfer.js"></script>
-    <script>
 
-        $("#audioController").popover({
-            content: "暂停/开始",
-            trigger: "hover",
-            delay: 200,
-            placement: "bottom",
-        })
-        $("#start").popover({
-            content: "获取这个句子开头的时间",
-            trigger: "hover",
-            delay: 200,
-            placement: "bottom",
-        })
-        $("#end").popover({
-            content: "获取这个句子结尾的时间",
-            trigger: "hover",
-            delay: 200,
-            placement: "bottom",
-        })
-
-        var wavesurfer = WaveSurfer.create({
-            container: '#waveform'
-        });
-        wavesurfer.load('./xwz1.mp3');
-        wavesurfer.on('ready', function () {
-            // wavesurfer.play();
-            setAudioController();
-        });
-        var timeSlice = [];
-        var currentSlice = {};
-
-        $("#start").click(function () {
-            currentSlice.start = wavesurfer.getCurrentTime();
-            $("#start + span").html(currentSlice.start)
-        })
-
-        $("#end").click(function () {
-            currentSlice.end = wavesurfer.getCurrentTime();
-            $("#end + span").html(currentSlice.end)
-        })
-
-        $("#submit").click(function () {
-            currentSlice.note = $("#note").val();
-            timeSlice.push({ ...currentSlice });
-            printSliceInfo();
-            clearData();
-        })
-
-        function printSliceInfo() {
-            $("#timeSliceTable tbody").append(
-                $("<tr></tr>").append(
-                    $("<th></th>").html(timeSlice.length).attr("scope", "row")
-                ).append(
-                    $("<td></td>").html(currentSlice.start)
-                ).append(
-                    $("<td></td>").html(currentSlice.end)
-                ).append(
-                    $("<td></td>").html(currentSlice.note)
-                )
-            )
-        }
-
-        function clearData() {
-            $("#start + span").html("");
-            $("#end + span").html("");
-            $("#note").val("");
-            currentSlice = {};
-        }
-
-        $("#audioController").on("click", function () {
-            wavesurfer.playPause()
-            setAudioController()
-        })
-
-        function setAudioController() {
-            if (wavesurfer.isPlaying() == true) {
-                $("#audioController").html("暂停")
-            } else {
-                $("#audioController").html("播放")
-            }
-        }
-
-        // @todo: 快捷键，f2控制pause/play，f3/f4控制开始/结尾
-        // @todo: 导出 json 格式数据，通过ipc发送json给main process，main process将其导出文件到下载目录
-        // @todo: 拖入音频文件
-
-        $("#saveToJsonFile").on("click", function () {
-            ipcRenderer.send('save-as-json-file', timeSlice)
-        })
-
-        ipcRenderer.on('save-file-finished', (event, arg) => {
-            console.log("save file: " + arg)
-            
-        })
-
-    </script>
+    <!-- 项目代码 -->
+    <script src="./popover.js" type="module"></script>
+    <script src="./wavesurfer.js" type="module"></script>
+    <script src="./audioController.js" type="module"></script>
+    <script src="./timeSlice.js" type="module"></script>
 </body>
 
 </html>
