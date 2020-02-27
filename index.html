@@ -10,8 +10,15 @@
         .editableRow td {
             cursor: pointer;
         }
+        .editableRow td:empty:before {
+            content: "点击添加";
+            color: #ddd;
+        }
         .editableRow td:last-of-type {
             cursor: text;
+        }
+        .editableRow td:last-of-type:focus {
+            background-color:antiquewhite;
         }
     </style>
 </head>
