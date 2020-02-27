@@ -3,6 +3,16 @@ var timeSlice = [];
 // 一个对象，保存当前句子的数据。提交时，将其保存到timeSlice数组，并清空currentSlice对象。
 var currentSlice = {};
 
+$("#start").click(function () {
+    currentSlice.start = wavesurfer.getCurrentTime();
+    $("#start + span").html(currentSlice.start)
+})
+
+$("#end").click(function () {
+    currentSlice.end = wavesurfer.getCurrentTime();
+    $("#end + span").html(currentSlice.end)
+})
+
 $("#submit").click(function () {
     currentSlice.note = $("#note").val();
     timeSlice.push({ ...currentSlice });
