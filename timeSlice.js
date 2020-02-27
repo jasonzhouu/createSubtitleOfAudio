@@ -33,12 +33,14 @@ function addNewRow() {
         currentSlice.end = wavesurfer.getCurrentTime()
         $(this).html(currentSlice.end)
     })
+    newRow.children("td[contenteditable=true]").keyup(function(){
+        currentSlice.note = $(this).html()
+    })
     $("#timeSliceTable tbody").append(newRow)
 }
 addNewRow()
 
 $("#addSlice").click(function(){
-    currentSlice.note = $("#timeSliceTable tbody tr:last td:last").html()
     // editableRow class的样式不一样。添加后，应该把这个样式去掉。
     $("#timeSliceTable tbody tr:last").removeClass("editableRow")
     $("#timeSliceTable tbody tr:last td").off("click")
