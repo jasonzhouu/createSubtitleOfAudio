@@ -25,6 +25,10 @@ function addNewRow() {
     ).append(
         $('<td contenteditable="true"></td>')
     )
+    addEventToNewRow(newRow)
+    $("#timeSliceTable tbody").append(newRow)
+}
+function addEventToNewRow(newRow) {
     newRow.children("td").eq(0).click(function () {
         currentSlice.start = wavesurfer.getCurrentTime()
         $(this).html(currentSlice.start)
@@ -36,7 +40,6 @@ function addNewRow() {
     newRow.children("td[contenteditable=true]").keyup(function(){
         currentSlice.note = $(this).html()
     })
-    $("#timeSliceTable tbody").append(newRow)
 }
 addNewRow()
 
