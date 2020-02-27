@@ -19,6 +19,7 @@ app.on('ready', () => {
     win.loadFile('index.html')
 })
 
+// 接收渲染进程发来的数据
 ipcMain.on('save-as-json-file', (event, arg) => {
     var status = saveJsonToFile(arg)
     if (status == undefined) {
@@ -26,6 +27,7 @@ ipcMain.on('save-as-json-file', (event, arg) => {
     } else {
         status = "failed"
     }
+    // 返回消息给渲染进程，告知是否保存成功
     event.reply('save-file-finished', status)
 })
 
