@@ -20,23 +20,26 @@ function addNewRow() {
 }
 addNewRow()
 
-$("#start").click(function () {
+$("#start").click(addStartTime)
+function addStartTime() {
     currentSlice.start = wavesurfer.getCurrentTime();
     $("#start + span").html(currentSlice.start)
-})
+}
 
 
-$("#end").click(function () {
+$("#end").click(addEndTime)
+function addEndTime () {
     currentSlice.end = wavesurfer.getCurrentTime();
     $("#end + span").html(currentSlice.end)
-})
+}
 
-$("#submit").click(function () {
+$("#submit").click(addSlice)
+function addSlice () {
     currentSlice.note = $("#note").val();
     timeSlice.push({ ...currentSlice });
     printSliceInfo();
     clearData();
-})
+}
 
 function printSliceInfo() {
     $("#timeSliceTable tbody").append(
