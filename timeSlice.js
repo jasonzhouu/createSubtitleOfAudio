@@ -27,35 +27,14 @@ function addNewRow() {
 }
 addNewRow()
 
-$("#submit").click(addSlice)
-function addSlice () {
-    currentSlice.note = $("#note").val();
-    timeSlice.push({ ...currentSlice });
-    printSliceInfo();
-    clearData();
-}
-
-function printSliceInfo() {
-    $("#timeSliceTable tbody").append(
-        $("<tr></tr>").append(
-            $("<th></th>").html(timeSlice.length).attr("scope", "row")
-        ).append(
-            $("<td></td>").html(currentSlice.start)
-        ).append(
-            $("<td></td>").html(currentSlice.end)
-        ).append(
-            $("<td></td>").html(currentSlice.note)
-        )
-    )
-}
-
-function clearData() {
-    $("#start + span").html("");
-    $("#end + span").html("");
-    $("#note").val("");
-    currentSlice = {};
-}
-
+$("#addSlice").click(function(){
+    currentSlice.note = $("#timeSliceTable tbody tr:last td:last").html()
+    // @todo: 检查currentSlice是否符合要求，各属性不能为空
+    timeSlice.push({ ...currentSlice })
+    currentSlice = {}
+    console.log(timeSlice);
+    
+})
 
 
 export {timeSlice, currentSlice}
