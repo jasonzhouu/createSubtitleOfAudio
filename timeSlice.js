@@ -47,6 +47,12 @@ $("#addSlice").click(function(){
     // editableRow class的样式不一样。添加后，应该把这个样式去掉。
     $("#timeSliceTable tbody tr:last").removeClass("editableRow")
     $("#timeSliceTable tbody tr:last td").off("click")
+    // 点击跳转到对应的时间播放
+    $("#timeSliceTable tbody tr").click(function(){
+        var startTime = parseFloat($(this).children("td").eq(0).html())
+        var endTime = parseFloat($(this).children("td").eq(1).html())
+        wavesurfer.play(startTime, endTime)
+    })
     // @todo: 检查currentSlice是否符合要求，各属性不能为空
     addNewSlice()
     addNewRow()
