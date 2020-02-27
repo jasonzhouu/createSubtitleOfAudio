@@ -3,14 +3,28 @@ import {wavesurfer} from './wavesurfer.js'
 // 一个数组，保存着所有句子的数据
 var timeSlice = [];
 var currentSlice = {};
+
 // 一个对象，保存当前句子的数据。提交时，将其保存到timeSlice数组，并清空currentSlice对象。
 function addNewSlice() {
-    timeSlice.push({
+    var temp = new Proxy({ // 如何监听 js 中变量的变化? https://www.zhihu.com/question/44724640/answer/117339055
         start: null,
         end: null,
-        note: null,
-    });
-    currentSlice = timeSlice[timeSlice.length-1]
+        note: null
+    }, {
+        set: function(obj, prop, value) {
+            if(prop == "start" || prop == "end") {
+                if(typeof(value) == 'number') {
+                    obj[prop] = value;
+                }
+            } else if (prop == "note") {
+                obj[prop] = value;
+            }
+            disableNewRowButton()
+            return true;
+        }
+    })
+    timeSlice.push(temp);
+    currentSlice = temp;
 }
 addNewSlice();
 
@@ -65,13 +79,24 @@ $("#addSlice").click(function(){
 function isCurrentRowIsFinished() {
     if(currentSlice.start == null
         || currentSlice.end == null
-        || currentSlice.note == null) {
+        || currentSlice.note == null
+        || currentSlice.note == "") {
             // 只要有一项没有填写，就是就没有完成
             return false;
         } else {
             return true;
         }
 }
+
+// @todo: 检测currentSlice的变化，如果还没填好，那么添加新行的按钮将不可用
+function disableNewRowButton() {
+    if(!isCurrentRowIsFinished()) {
+        $("button#addSlice").prop("disabled", true); // https://stackoverflow.com/questions/15122526/disable-button-in-jquery
+    } else {
+        $("button#addSlice").prop("disabled", false); 
+    }
+}
+disableNewRowButton();
 
 
 export {timeSlice}
