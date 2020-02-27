@@ -25,6 +25,8 @@ function addNewSlice() {
     })
     timeSlice.push(temp);
     currentSlice = temp;
+    // 新建行时，也要disable button
+    disableNewRowButton();
 }
 addNewSlice();
 
@@ -96,7 +98,5 @@ function disableNewRowButton() {
         $("button#addSlice").prop("disabled", false); 
     }
 }
-disableNewRowButton();
-
 
 export {timeSlice}

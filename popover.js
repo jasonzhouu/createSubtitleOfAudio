@@ -1,7 +1,6 @@
 let option = {
     content: "",
     trigger: "hover",
-    delay: 200,
     placement: "auto",
 }
 
