@@ -6,12 +6,12 @@ var timeSlice = [];
 var currentSlice = {};
 
 function addNewRow() {
-    var newRow = $("<tr></tr>").append(
+    var newRow = $('<tr class="editableRow"></tr>').append(
         $("<th></th>").html(timeSlice.length + 1)
     ).append(
-        $("<td>2</td>")
+        $("<td></td>")
     ).append(
-        $("<td>3</td>")
+        $("<td></td>")
     ).append(
         $('<td contenteditable="true"></td>')
     )
@@ -29,6 +29,8 @@ addNewRow()
 
 $("#addSlice").click(function(){
     currentSlice.note = $("#timeSliceTable tbody tr:last td:last").html()
+    // editableRow class的样式不一样。添加后，应该把这个样式去掉。
+    $("#timeSliceTable tbody tr:last").removeClass("editableRow")
     // @todo: 检查currentSlice是否符合要求，各属性不能为空
     timeSlice.push({ ...currentSlice })
     currentSlice = {}
