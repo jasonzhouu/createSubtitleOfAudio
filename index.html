@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小王子</title>
     <link rel="stylesheet" href="./static/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <style>
         .editableRow td {
             cursor: pointer;
@@ -48,7 +49,7 @@
             display: flex;
             justify-content: center;  /* 居中，参考 https://codepen.io/enxaneta/pen/adLPwv */
         }
-        section#audioController button {
+        button#backward, button#forward, button#play {
             height: 3em;
             line-height: 1em;
             border: 0px;
@@ -60,6 +61,10 @@
         button:focus {
             outline: none;
         }
+        button#saveToJsonFile {
+            background-color: #ddd;
+            border: none;
+        }
     </style>
 </head>
 
@@ -69,6 +74,9 @@
         <button id="backward">退5秒</button>
         <button id="play">播放</button>
         <button id="forward">进5秒</button>
+        <button id="saveToJsonFile">
+            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+        </button>
     </section>
 
     <table class="table table-striped" id="timeSliceTable" style="margin-bottom: 0;">
@@ -84,8 +92,6 @@
         </tbody>
     </table>
     <button id="addSlice">+</button>
-
-    <button id="saveToJsonFile">保存字幕</button>
 
     <!-- 第三方库：jquery, boostrap, wavesurfer -->
     <script src="./static/jquery-3.4.1.js"></script>
