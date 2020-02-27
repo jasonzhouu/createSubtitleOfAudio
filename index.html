@@ -19,6 +19,11 @@
             cursor: text;
             background-color:antiquewhite;
         }
+        div#addSlice {
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
     </style>
 </head>
 
@@ -26,7 +31,7 @@
     <div id="waveform"></div>
     <button id="audioController">播放</button>
 
-    <table class="table table-striped" id="timeSliceTable">
+    <table class="table table-striped" id="timeSliceTable" style="margin-bottom: 0;">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -38,7 +43,7 @@
         <tbody>
         </tbody>
     </table>
-    <button id="addSlice">添加一行</button>
+    <div id="addSlice">+</div>
 
     <button id="saveToJsonFile">保存字幕</button>
 
@@ -56,7 +61,10 @@
     <script>
         // @todo: 快捷键，f2控制pause/play，f3/f4控制开始/结尾
         // @todo: 拖入音频文件
-        // @todo: 点击时间，播放相应事件的音频。可以编辑时间。
+        // @todo: 音频列表
+        // @todo: 编辑时间
+        // @todo: 前进、后退5s
+        // @todo: row popover
     </script>
 </body>
 
