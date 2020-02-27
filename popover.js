@@ -4,11 +4,6 @@ let option = {
     placement: "auto",
 }
 
-$("#audioController").popover({
-    ...option,
-    content: "暂停/开始",
-})
-
 $("#saveToJsonFile").popover({
     ...option,
     content: "将字幕保存到JSON文件",

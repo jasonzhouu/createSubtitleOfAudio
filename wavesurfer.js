@@ -13,9 +13,9 @@ wavesurfer.on('ready', function () {
  */ 
 function setAudioController() {
     if (wavesurfer.isPlaying() == true) {
-        $("#audioController").html("暂停")
+        $("#play").html("暂停")
     } else {
-        $("#audioController").html("播放")
+        $("#play").html("播放")
     }
 }
 
