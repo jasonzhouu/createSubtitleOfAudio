@@ -15,20 +15,6 @@
         <label for="exampleFormControlTextarea1">字幕</label>
         <textarea class="form-control" id="note" rows="3"></textarea>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <button id="start">句子开头</button>
-                <span></span>
-            </div>
-            <div class="col">
-                <button id="end">句子结尾</button>
-                <span></span>
-            </div>
-        </div>
-    </div>
-
-    <button id="submit">添加句子</button>
 
     <table class="table table-striped" id="timeSliceTable">
         <thead>
@@ -42,7 +28,9 @@
         <tbody>
         </tbody>
     </table>
-    <button id="saveToJsonFile">save</button>
+    <button id="submit">添加句子</button>
+
+    <button id="saveToJsonFile">保存字幕</button>
 
     <!-- 第三方库：jquery, boostrap, wavesurfer -->
     <script src="./static/jquery-3.4.1.js"></script>

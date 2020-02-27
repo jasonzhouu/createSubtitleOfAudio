@@ -6,32 +6,26 @@ var timeSlice = [];
 var currentSlice = {};
 
 function addNewRow() {
-    $("#timeSliceTable tbody").append(
-        $("<tr></tr>").append(
-            $("<th>1</th>").html(timeSlice.length + 1)
-        ).append(
-            $("<td>2</td>")
-        ).append(
-            $("<td>3</td>")
-        ).append(
-            $("<td>4</td>")
-        )
+    var newRow = $("<tr></tr>").append(
+        $("<th></th>").html(timeSlice.length + 1)
+    ).append(
+        $("<td>2</td>")
+    ).append(
+        $("<td>3</td>")
+    ).append(
+        $('<td contenteditable="true"></td>')
     )
+    newRow.children("td").eq(0).click(function () {
+        currentSlice.start = wavesurfer.getCurrentTime()
+        $(this).html(currentSlice.start)
+    })
+    newRow.children("td").eq(1).click(function(){
+        currentSlice.end = wavesurfer.getCurrentTime()
+        $(this).html(currentSlice.end)
+    })
+    $("#timeSliceTable tbody").append(newRow)
 }
 addNewRow()
-
-$("#start").click(addStartTime)
-function addStartTime() {
-    currentSlice.start = wavesurfer.getCurrentTime();
-    $("#start + span").html(currentSlice.start)
-}
-
-
-$("#end").click(addEndTime)
-function addEndTime () {
-    currentSlice.end = wavesurfer.getCurrentTime();
-    $("#end + span").html(currentSlice.end)
-}
 
 $("#submit").click(addSlice)
 function addSlice () {
