@@ -1,10 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const fs = require('fs')
 
-let win
-
 app.on('ready', () => {
-    win = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: 1000,
         height: 800,
         webPreferences: {
@@ -16,7 +14,7 @@ app.on('ready', () => {
             preload: __dirname + '/preload.js'
         }
     })
-    win.loadFile('index.html')
+    mainWindow.loadFile('index.html')
 })
 
 // 接收渲染进程发来的数据
