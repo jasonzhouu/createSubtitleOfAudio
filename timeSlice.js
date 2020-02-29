@@ -100,11 +100,9 @@ function disableNewRowButton() {
 }
 
 function saveTimeSliceToElectronStore() {
-    console.log('save to json');
+    console.log('save to electron store');
     const store = new Store()
-    store.set('hello', 'world')
     store.set('xwz', timeSlice)
-    console.log('hello: ', store.get('hello'));
     console.log('xwz: ', store.get('xwz'));
 }
 
