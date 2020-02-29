@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/jasonzhouu/createSubtitleOfAudio/issues"
   },
-  "homepage": "https://github.com/jasonzhouu/createSubtitleOfAudio#readme"
+  "homepage": "https://github.com/jasonzhouu/createSubtitleOfAudio#readme",
+  "dependencies": {
+    "electron-store": "^5.1.1"
+  }
 }
