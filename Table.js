@@ -2,9 +2,6 @@ import {wavesurfer} from './wavesurfer.js'
 
 export default function Table(timeSlice){
     this.timeSlice = timeSlice;
-}
-
-Table.prototype.initTable = function() {
     this.timeSlice.forEach((element, index) => {
         this.addRow(element, index)
     })
@@ -64,8 +61,3 @@ Table.prototype.addChangeNoteEvent = function(row, index) {
         self.timeSlice[index].note = note
     })
 }
-
-
-
-
-// @todo: save to store
