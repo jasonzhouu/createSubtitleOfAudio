@@ -1,6 +1,7 @@
 import {wavesurfer} from './wavesurfer.js'
 
 export default function Table(timeSlice){
+    // 与外面的timeSlice公用一个，所以当的timeSlice发生任何更改，这个也会发生变化。
     this.timeSlice = timeSlice;
     this.addTable()
 }
