@@ -5,13 +5,12 @@ export default function Table(timeSlice){
 }
 
 Table.prototype.initTable = function() {
-    this.timeSlice.forEach((element, index, array) => {
-        var lastRow = (index == (array.length -1))
-        this.addRow(element, index, lastRow)
+    this.timeSlice.forEach((element, index) => {
+        this.addRow(element, index)
     })
 }
 
-Table.prototype.addRow = function(slice, index, lastRow) {
+Table.prototype.addRow = function(slice, index) {
     var newRow = $('<tr></tr>').append(
         $("<th></th>").html(index)
     ).append(
@@ -21,16 +20,18 @@ Table.prototype.addRow = function(slice, index, lastRow) {
     ).append(
         $('<td contenteditable="true"></td>').html(slice.note)
     )
-    this.addEvent(newRow, lastRow)
+    this.addEvent(newRow, index)
     $("#timeSliceTable tbody").append(newRow)
 }
 
-Table.prototype.addEvent = function(row, lastRow) {
-    if (lastRow) {
+Table.prototype.addEvent = function(row, index) {
+    var whetherLastRow = (index == (this.timeSlice.length -1))
+    if (whetherLastRow) {
         this.addEventToLastRow(row)
     } else {
         this.addEventToFormerRow(row)
     }
+    this.addChangeNoteEvent(row, index)
 }
 
 Table.prototype.addEventToFormerRow = function(row) {
@@ -43,17 +44,28 @@ Table.prototype.addEventToFormerRow = function(row) {
 }
 
 Table.prototype.addEventToLastRow = function(row) {
-    let currentSlice = this.timeSlice[this.timeSlice.length-1]
+    let lastSlice = this.timeSlice[this.timeSlice.length-1]
     row.children('td').eq(0).click(function(){
         let startTime = wavesurfer.getCurrentTime()
         $(this).html(startTime)
-        currentSlice.start = startTime
+        lastSlice.start = startTime
     })
     row.children('td').eq(1).click(function(){
         let endTime = wavesurfer.getCurrentTime()
         $(this).html(endTime)
-        currentSlice.end = endTime
+        lastSlice.end = endTime
     })
 }
 
-// @todo: change note, keyup event
+Table.prototype.addChangeNoteEvent = function(row, index) {
+    let self = this;
+    row.children('td').last().keyup(function() {
+        let note = $(this).html()
+        self.timeSlice[index].note = note
+    })
+}
+
+
+
+
+// @todo: save to store

@@ -32,7 +32,6 @@ export default function initTimeSlice() {
                 else if (prop == "note") {
                     obj[prop] = value;
                 }
-                disableNewRowButton();
                 return true;
             }
         });
