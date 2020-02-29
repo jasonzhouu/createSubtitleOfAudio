@@ -1,9 +1,7 @@
 import {wavesurfer} from './wavesurfer.js'
-import restoreFromElectronStore from './restoreFromElectronStore.js'
+import timeSlice from './timeSlice'
 
-// 一个数组，保存着所有句子的数据
-var timeSlice = restoreFromElectronStore();
-var currentSlice = {};
+var currentSlice = timeSlice.currentSlice;
 
 function addNewSliceAndRow() {
     // 在timeSlice数组中添加新项
@@ -13,28 +11,6 @@ function addNewSliceAndRow() {
     addNewRow();
 }
 
-function createNewSlice() {
-    var newSlice = new Proxy({ // 如何监听 js 中变量的变化? https://www.zhihu.com/question/44724640/answer/117339055
-        start: null,
-        end: null,
-        note: null
-    }, {
-        set: function(obj, prop, value) {
-            if(prop == "start" || prop == "end") {
-                if(typeof(value) == 'number') {
-                    obj[prop] = value;
-                }
-            } else if (prop == "note") {
-                obj[prop] = value;
-            }
-            disableNewRowButton()
-            return true;
-        }
-    })
-    // 新建行时，也要disable button
-    disableNewRowButton();
-    return newSlice;
-}
 
 function addNewRow() {
     var newRow = $('<tr class="editableRow"></tr>').append(

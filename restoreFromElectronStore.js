@@ -7,6 +7,7 @@ export default function restoreFromElectronStore() {
         return []
     }
     
+    // @todo: 把这部分抽离到单独的文件
     function addNewRow(currentSlice, index) {
         var newRow = $('<tr></tr>').append(
             $("<th></th>").html(index)
