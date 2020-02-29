@@ -20,6 +20,12 @@ export default function restoreFromElectronStore() {
         $("#timeSliceTable tbody").append(newRow)
     }
 
+    function addEventToRow(currentRow) {
+        currentRow.children('td').click(function(){
+            
+        })
+    }
+
     timeSlice.forEach((currentSlice, index) => {
         addNewRow(currentSlice, index)
     });

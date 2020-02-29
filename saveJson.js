@@ -1,4 +1,4 @@
-import {timeSlice} from './timeSlice.js'
+import {timeSlice} from './addNewRow.js'
 
 $("#saveToJsonFile").on("click", function () {
     // 将数据发送到主进程，消息类型：save-as-json-file
