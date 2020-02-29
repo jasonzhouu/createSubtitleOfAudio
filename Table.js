@@ -27,14 +27,14 @@ Table.prototype.addRow = function(slice, index, lastRow) {
 
 Table.prototype.addEvent = function(row, lastRow) {
     if (lastRow) {
-        this.addEventToFormerRow(row)
-    } else {
         this.addEventToLastRow(row)
+    } else {
+        this.addEventToFormerRow(row)
     }
 }
 
 Table.prototype.addEventToFormerRow = function(row) {
-    row.children('td').eq(0).click(function(){
+    row.children('td').click(function(){
         var currentTime = parseFloat(
             $(this).html()
         )
@@ -43,8 +43,7 @@ Table.prototype.addEventToFormerRow = function(row) {
 }
 
 Table.prototype.addEventToLastRow = function(row) {
-    //@todo
-    let currentSlice = this.timeSlice[timeSlice.length-1]
+    let currentSlice = this.timeSlice[this.timeSlice.length-1]
     row.children('td').eq(0).click(function(){
         let startTime = wavesurfer.getCurrentTime()
         $(this).html(startTime)
@@ -52,7 +51,7 @@ Table.prototype.addEventToLastRow = function(row) {
     })
     row.children('td').eq(1).click(function(){
         let endTime = wavesurfer.getCurrentTime()
-        $(this).html(startTime)
+        $(this).html(endTime)
         currentSlice.end = endTime
     })
 }
