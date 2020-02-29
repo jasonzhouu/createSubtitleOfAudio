@@ -20,6 +20,7 @@ export default function initTimeSlice() {
                 else if (prop == "note") {
                     obj[prop] = value;
                 }
+                // 监听set事件，实时保存至 electron-store
                 electronStore.save(timeSlice)
                 return true;
             }
@@ -27,7 +28,7 @@ export default function initTimeSlice() {
         this.push(newSlice);
         return true;
     };
-    // todo: 从timeslice.data创建 proxy，监听set事件
+    // 启动软件时，从store读取数据，写入timeSlice，并依次创建DOM
     const electronStore = new ElectronStore()
     let storeData = electronStore.get();
     storeData.forEach(element => {

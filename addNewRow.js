@@ -65,7 +65,7 @@ function isCurrentRowIsFinished() {
         }
 }
 
-// @todo: 检测currentSlice的变化，如果还没填好，那么添加新行的按钮将不可用
+// 检测currentSlice的变化，如果还没填好，那么添加新行的按钮将不可用
 function disableNewRowButton() {
     if(!isCurrentRowIsFinished()) {
         $("button#addSlice").prop("disabled", true); // https://stackoverflow.com/questions/15122526/disable-button-in-jquery
@@ -81,7 +81,6 @@ function saveTimeSliceToElectronStore() {
     console.log('xwz: ', store.get('xwz'));
 }
 
-// @todo: 启动软件时，从store读取数据，写入timeSlice，并产生DOM
 
 addNewSliceAndRow()
 
