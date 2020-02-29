@@ -62,6 +62,7 @@ Table.prototype.addEventToLastRow = function(row) {
         $(this).html(endTime)
         lastSlice.end = endTime
     })
+    row.addClass('editableRow')
 }
 
 Table.prototype.addChangeNoteEvent = function(row, index) {

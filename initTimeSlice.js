@@ -1,4 +1,5 @@
 import ElectronStore from './ElectronStore.js'
+import disableNewRowButton from './disableAddNewRow.js'
 
 export default function initTimeSlice() {
     let timeSlice = []
@@ -22,6 +23,7 @@ export default function initTimeSlice() {
                 }
                 // 监听更改事件，实时保存至 electron-store
                 electronStore.save(timeSlice)
+                disableNewRowButton(timeSlice)
                 return true;
             }
         });
