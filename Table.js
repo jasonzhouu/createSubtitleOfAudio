@@ -2,10 +2,18 @@ import {wavesurfer} from './wavesurfer.js'
 
 export default function Table(timeSlice){
     this.timeSlice = timeSlice;
-    $("#timeSliceTable tbody").html('')
+    this.addTable()
+}
+
+Table.prototype.addTable = function() {
     this.timeSlice.forEach((element, index) => {
         this.addRow(element, index)
     })
+}
+
+Table.prototype.refresh = function() {
+    $("#timeSliceTable tbody").html('')
+    this.addTable()
 }
 
 Table.prototype.addRow = function(slice, index) {
