@@ -73,8 +73,8 @@ $("#addSlice").click(function(){
         var endTime = parseFloat($(this).children("td").eq(1).html())
         wavesurfer.play(startTime, endTime)
     })
-    addNewSliceAndRow()
     saveTimeSliceToElectronStore()
+    addNewSliceAndRow()
 })
 
 function isCurrentRowIsFinished() {
@@ -102,9 +102,12 @@ function saveTimeSliceToElectronStore() {
     console.log('save to json');
     const store = new Store()
     store.set('hello', 'world')
-    console.log(store.get('hello'));
-    
+    store.set('xwz', timeSlice)
+    console.log('hello: ', store.get('hello'));
+    console.log('xwz: ', store.get('xwz'));
 }
+
+// @todo: 启动软件时，从store读取数据，写入timeSlice，并产生DOM
 
 addNewSliceAndRow()
 
