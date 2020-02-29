@@ -1,7 +1,8 @@
 import {wavesurfer} from './wavesurfer.js'
+import restoreFromElectronStore from './restoreFromElectronStore.js'
 
 // 一个数组，保存着所有句子的数据
-var timeSlice = [];
+var timeSlice = restoreFromElectronStore();
 var currentSlice = {};
 
 function addNewSliceAndRow() {
