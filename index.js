@@ -3,4 +3,4 @@ import Table from './Table.js'
 
 var timeSlice = initTimeSlice()
 
-new Table(timeSlice.data)
+new Table(timeSlice)

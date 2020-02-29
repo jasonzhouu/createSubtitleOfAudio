@@ -1,28 +1,16 @@
-import restoreFromElectronStore from './restoreFromElectronStore.js'
+import ElectronStore from './ElectronStore.js'
 
 export default function initTimeSlice() {
-    var timeSlice = new Proxy({
-        data: [],
-    }, {
-        get: function (target, prop, receiver) {
-            switch (prop) {
-                case 'currentSlice':
-                    return target[target.length - 1];
-                case 'data':
-                    return target.data;
-                default:
-                    break;
+    let timeSlice = []
+    timeSlice.createNewSlice = function (slice) {
+        if(slice == undefined) {
+            slice = {
+                start: null,
+                end: null,
+                note: null
             }
         }
-    });
-    // 一个数组，保存着所有句子的数据
-    timeSlice.data = restoreFromElectronStore();
-    timeSlice.createNewSlice = function () {
-        var newSlice = new Proxy({
-            start: null,
-            end: null,
-            note: null
-        }, {
+        var newSlice = new Proxy({...slice}, {
             set: function (obj, prop, value) {
                 if (prop == "start" || prop == "end") {
                     if (typeof (value) == 'number') {
@@ -32,12 +20,19 @@ export default function initTimeSlice() {
                 else if (prop == "note") {
                     obj[prop] = value;
                 }
+                electronStore.save(timeSlice)
                 return true;
             }
         });
-        this.data.push(newSlice);
+        this.push(newSlice);
         return true;
     };
+    // todo: 从timeslice.data创建 proxy，监听set事件
+    const electronStore = new ElectronStore()
+    let storeData = electronStore.get();
+    storeData.forEach(element => {
+        timeSlice.createNewSlice(element)
+    })
     return timeSlice;
 }
 
