@@ -1,8 +1,7 @@
-import {wavesurfer, setAudioController} from './wavesurfer.js'
+import {wavesurfer} from './wavesurfer.js'
 
 $("#play").on("click", function () {
     wavesurfer.playPause()
-    setAudioController()
 })
 
 $("#forward").click(function() {

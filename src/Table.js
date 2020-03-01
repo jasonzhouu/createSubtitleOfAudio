@@ -42,7 +42,7 @@ Table.prototype.addEvent = function(row, index) {
 }
 
 Table.prototype.addEventToFormerRow = function(row) {
-    row.children('td').click(function(){
+    row.children('td:lt(2)').click(function(){
         var currentTime = parseFloat(
             $(this).html()
         )
