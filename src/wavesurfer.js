@@ -1,7 +1,7 @@
 var wavesurfer = WaveSurfer.create({
     container: '#waveform'
 });
-wavesurfer.load('./xwz1.mp3');
+wavesurfer.load('../xwz1.mp3');
 wavesurfer.on('ready', function () {
     // wavesurfer.play();
     setAudioController();

@@ -1,3 +1,4 @@
+const path = require('path')
 const { app, BrowserWindow, ipcMain } = require('electron')
 const fs = require('fs')
 
@@ -14,7 +15,7 @@ function createWindow() {
             preload: __dirname + '/preload.js'
         }
     })
-    mainWindow.loadFile('index.html')
+    mainWindow.loadFile(path.join(__dirname + '/src/index.html'))
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
