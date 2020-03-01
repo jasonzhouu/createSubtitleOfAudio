@@ -7,72 +7,7 @@
     <title>小王子</title>
     <link rel="stylesheet" href="../static/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <style>
-        body {
-            padding-bottom: 84px;
-        }
-        .editableRow td {
-            cursor: pointer;
-            max-width: 1000px;
-        }
-        .editableRow td:empty:before {
-            content: "点击添加";
-            color: #ddd;
-        }
-        .editableRow td:last-of-type:hover, :focus {
-            cursor: text;
-            background-color:antiquewhite;
-        }
-        button#addSlice {
-            display: block;
-            padding: 1px 16px;
-            margin: 0 auto;
-            color: orange;
-            background: none;
-            border: 1px solid orange;
-            border-radius: 0% 0% 50% 50%;
-            text-align: center;
-            cursor: pointer;
-            font-size: 1.5em;
-            transition: all 0.25s ease-in;
-        }
-        button#addSlice:disabled {
-            border-color: #ddd;
-            color: #ddd;
-        }
-        button#addSlice:active {
-            outline: none;
-        }
-        section#audioController {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #ddd;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;  /* 居中，参考 https://codepen.io/enxaneta/pen/adLPwv */
-        }
-        button#backward, button#forward, button#play {
-            height: 3em;
-            line-height: 1em;
-            border: 0px;
-            border-radius: 1.5em;
-            padding: 1em 2em;
-            margin: 0.5em;
-            background-color: white;
-        }
-        button:focus {
-            outline: none;
-        }
-        button#saveToJsonFile {
-            background-color: #ddd;
-            border: none;
-        }
-        section#timeSliceTable{
-            height: calc(100vh - 128px - 84px);
-            overflow: scroll;
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
