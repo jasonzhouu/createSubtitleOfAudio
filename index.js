@@ -14,4 +14,4 @@ $('#addSlice').click(function() {
     disableNewRowButton(timeSlice)
 })
 
-// todo: 行 overflow, scroll 用 css
+// todo: 组织代码，存放在src目录
