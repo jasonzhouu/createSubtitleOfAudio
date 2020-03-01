@@ -13,7 +13,7 @@ Table.prototype.addTable = function() {
 }
 
 Table.prototype.refresh = function() {
-    $("#timeSliceTable tbody").html('')
+    $("#timeSliceTable table tbody").html('')
     this.addTable()
 }
 
@@ -32,7 +32,7 @@ Table.prototype.addRow = function(slice, index) {
         $('<td contenteditable="true"></td>').html(slice.note)
     )
     this.addEvent(newRow, index)
-    $("#timeSliceTable tbody").append(newRow)
+    $("#timeSliceTable table tbody").append(newRow)
 }
 
 Table.prototype.decreaseNumberAccuracy = function(num) {
