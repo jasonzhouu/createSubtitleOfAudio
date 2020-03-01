@@ -34,6 +34,8 @@ export default function initTimeSlice() {
     const electronStore = new ElectronStore()
     let storeData = electronStore.get();
     storeData.forEach(element => {
+        // 将每个对象都转成Proxy，从而监听更改事件
+        // 保存到store、以及控制new row button的有效与否
         timeSlice.newSlice(element)
     })
     return timeSlice;

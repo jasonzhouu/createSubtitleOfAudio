@@ -4,7 +4,9 @@ let option = {
     placement: "auto",
 }
 
-$("#saveToJsonFile").popover({
-    ...option,
-    content: "将字幕保存到JSON文件",
-})
+export default function addPopOver() {
+    $("#saveToJsonFile").popover({
+        ...option,
+        content: "将字幕保存到JSON文件",
+    })
+}
