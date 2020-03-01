@@ -21,14 +21,26 @@ Table.prototype.addRow = function(slice, index) {
     var newRow = $('<tr></tr>').append(
         $("<th></th>").html(index)
     ).append(
-        $("<td></td>").html(slice.start)
+        $("<td></td>").html(
+            this.decreaseNumberAccuracy(slice.start)
+            )
     ).append(
-        $("<td></td>").html(slice.end)
+        $("<td></td>").html(
+            this.decreaseNumberAccuracy(slice.end)
+            )
     ).append(
         $('<td contenteditable="true"></td>').html(slice.note)
     )
     this.addEvent(newRow, index)
     $("#timeSliceTable tbody").append(newRow)
+}
+
+Table.prototype.decreaseNumberAccuracy = function(num) {
+    if (num == null || num == undefined) {
+        return 0
+    } else if(typeof(num) == 'number') {
+        return num.toFixed(1)
+    }
 }
 
 Table.prototype.addEvent = function(row, index) {
@@ -54,12 +66,13 @@ Table.prototype.addEventToLastRow = function(row) {
     let lastSlice = this.timeSlice[this.timeSlice.length-1]
     row.children('td').eq(0).click(function(){
         let startTime = wavesurfer.getCurrentTime()
-        $(this).html(startTime)
+        // 显示时间精确到小数点后2位数，内存中的数据仍然保留最大的精确度
+        $(this).html(startTime.toFixed(1))
         lastSlice.start = startTime
     })
     row.children('td').eq(1).click(function(){
         let endTime = wavesurfer.getCurrentTime()
-        $(this).html(endTime)
+        $(this).html(endTime.toFixed(1))
         lastSlice.end = endTime
     })
     row.addClass('editableRow')
