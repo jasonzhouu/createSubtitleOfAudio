@@ -1,11 +1,13 @@
 import initTimeSlice from './initTimeSlice.js'
 import Table from './Table.js'
 import disableNewRowButton from './disableAddNewRow.js'
-
+import addAudioController from './audioController.js'
 
 var timeSlice = initTimeSlice()
 
 var table = new Table(timeSlice)
+
+addAudioController()
 
 // add new row
 $('#addSlice').click(function() {
