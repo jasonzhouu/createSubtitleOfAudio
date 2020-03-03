@@ -4,7 +4,7 @@ var wavesurfer = WaveSurfer.create({
 wavesurfer.load('../xwz1.mp3');
 wavesurfer.on('ready', function () {
     // 启动时自动播放
-    wavesurfer.play();
+    // wavesurfer.play();
 });
 
 
