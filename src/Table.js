@@ -7,7 +7,7 @@
  * @private method addRow(): 添加一行表格
  * @private method addEvent(): 给表格添加事件
  */
-export default function Table(wavesurfer, timeSlice){
+export default function Table(audioWave, timeSlice){
     // 这里的timeSlice是对外面的timeSlice的引用，当外部的timeSlice发生任何更改，这里的timeSlice也会相应改变
     // timeSlice 处于下面的函数的闭包
 
@@ -69,20 +69,20 @@ export default function Table(wavesurfer, timeSlice){
             var currentTime = parseFloat(
                 $(this).html()
             )
-            wavesurfer.play(currentTime)
+            audioWave.play(currentTime)
         })
     }
 
     function addEventToLastRow(row) {
         let lastSlice = timeSlice.getLastSlice()
         row.children('td').eq(0).click(function(){
-            let startTime = wavesurfer.getCurrentTime()
+            let startTime = audioWave.getCurrentTime()
             // 显示时间精确到小数点后2位数，内存中的数据仍然保留最大的精确度
             $(this).html(startTime.toFixed(1))
             lastSlice.start = startTime
         })
         row.children('td').eq(1).click(function(){
-            let endTime = wavesurfer.getCurrentTime()
+            let endTime = audioWave.getCurrentTime()
             $(this).html(endTime.toFixed(1))
             lastSlice.end = endTime
         })

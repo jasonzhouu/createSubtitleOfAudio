@@ -1,12 +1,12 @@
-export default function addAudioController(wavesurfer) {
+export default function addAudioController(audioWave) {
     $("#play").on("click", function () {
-        wavesurfer.playPause();
+        audioWave.playPause();
     });
     $("#forward").click(function () {
-        wavesurfer.skip(5);
+        audioWave.skip(5);
     });
     $("#backward").click(function () {
-        wavesurfer.skip(-5);
+        audioWave.skip(-5);
     });
 }
 
