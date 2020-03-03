@@ -26,7 +26,7 @@ export default function Table(timeSlice){
 
     // 下面的都是私有方法，外部无法直接调用
     function addTable() {
-        timeSlice.forEach((element, index) => {
+        timeSlice.get().forEach((element, index) => {
             addRow(element, index)
         })
     }
@@ -58,7 +58,7 @@ export default function Table(timeSlice){
     }
 
     function addEvent(row, index) {
-        var whetherLastRow = (index == (timeSlice.length -1))
+        var whetherLastRow = (index == (timeSlice.get().length -1))
         if (whetherLastRow) {
             addEventToLastRow(row)
         } else {
@@ -77,7 +77,7 @@ export default function Table(timeSlice){
     }
 
     function addEventToLastRow(row) {
-        let lastSlice = timeSlice[timeSlice.length-1]
+        let lastSlice = timeSlice.getLastSlice()
         row.children('td').eq(0).click(function(){
             let startTime = wavesurfer.getCurrentTime()
             // 显示时间精确到小数点后2位数，内存中的数据仍然保留最大的精确度
@@ -95,7 +95,7 @@ export default function Table(timeSlice){
     function addChangeNoteEvent(row, index) {
         row.children('td').last().keyup(function() {
             let note = $(this).html()
-            timeSlice[index].note = note
+            timeSlice.changeNote(index, note)
         })
     }
 }
