@@ -4,7 +4,7 @@ import disableNewRowButton from './disableAddNewRow.js'
 import addAudioController from './audioController.js'
 import addPopOver from './popover.js'
 
-var timeSlice = new TimeSlice()
+var timeSlice = new TimeSlice('xwz')
 
 var table = new Table(timeSlice)
 table.init()

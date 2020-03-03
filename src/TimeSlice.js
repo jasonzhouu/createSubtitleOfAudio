@@ -2,10 +2,10 @@ import ElectronStore from './ElectronStore.js'
 import disableNewRowButton from './disableAddNewRow.js'
 
 
-export default function TimeSlice() {
+export default function TimeSlice(audioName) {
     // 启动软件时，从store读取数据，写入timeSlice，并依次创建DOM
     // 私有变量: electronStore, timeSlice
-    const electronStore = new ElectronStore()
+    const electronStore = new ElectronStore(audioName)
     let timeSlice = []
 
     // 公有方法: get(), addNewSlice(), changeNote(), getLastRow()
