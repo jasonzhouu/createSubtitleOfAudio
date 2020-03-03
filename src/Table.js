@@ -4,8 +4,11 @@ import wavesurfer from './wavesurfer.js'
 /*
  * 作用：创建表格
  * @param timeSlice: 表格数据
- * @method init(): 创建表格
- * @method refresh(): 刷新表格
+ * @public method init(): 创建表格
+ * @public method refresh(): 刷新表格
+ * @private method addTable(): 创建表格
+ * @private method addRow(): 添加一行表格
+ * @private method addEvent(): 给表格添加事件
  */
 export default function Table(timeSlice){
     // 这里的timeSlice是对外面的timeSlice的引用，当外部的timeSlice发生任何更改，这里的timeSlice也会相应改变
