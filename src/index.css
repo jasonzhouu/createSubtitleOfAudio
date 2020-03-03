@@ -63,8 +63,12 @@ section#timeSliceTable{
     overflow: scroll;
 }
 
-div#audioList {
+
+div#audioPage {
     display: none;
+}
+
+div#audioList {
     width: 100%;
     height: calc(100vh - 84px);
     position: relative;
