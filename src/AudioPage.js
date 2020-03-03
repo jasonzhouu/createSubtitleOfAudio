@@ -13,7 +13,7 @@ export default function AudioPage() {
 
     this.show = function (audioName) {
         // 销毁之前的音频波，如果存在的话；清除按钮注册的事件。
-        destroy()
+        clearAudioPage()
         // 显示音频波
         audioWave = showAudioWave(audioName + '.mp3')
 
@@ -28,8 +28,14 @@ export default function AudioPage() {
         addEventToButtons(audioWave, timeSlice, table)
     }
 
+    this.play = function () {
+        audioWave.on('ready', function () {
+            audioWave.play()
+        });
+    }
+
     // 私有函数
-    function destroy() {
+    function clearAudioPage() {
         if (audioWave != null) {
             audioWave.destroy()
         }

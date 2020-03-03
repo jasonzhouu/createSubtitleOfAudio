@@ -18,6 +18,12 @@ $('#closeAudioList').click(function() {
     $('#audioList').hide()
     $('#audioPage').show()
 })
+
+// 点击音频列表，播放相应的文件，并隐藏音频列表
 $('#audioList ul li').click(function() {
-    console.log($('li').index($(this)) + 1)
+    let index = ($('li').index($(this)) + 1)
+    audioPage.show('xwz'+index)
+    $('#audioList').hide()
+    $('#audioPage').show()
+    audioPage.play()
 })

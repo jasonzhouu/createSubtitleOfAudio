@@ -70,6 +70,19 @@ div#audioList {
     position: relative;
 }
 
+div#audioList ul {
+    padding: 0;
+    margin: 0;
+}
+div#audioList ul li {
+    line-height: 3em;
+    cursor: pointer;
+    list-style: none;
+}
+div#audioList ul li:hover {
+    background-color: #ddd;
+}
+
 button#closeAudioList {
     position: absolute;
     top: 10px;
