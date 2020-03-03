@@ -3,7 +3,7 @@ import addExportJsonEvent from './addExportJsonEvent.js'
 /*
  * 作用：创建表格
  * @param timeSlice: 表格数据
- * @public method init(): 创建表格
+ * @public method show(): 创建表格
  * @public method refresh(): 刷新表格
  * @private method addTable(): 创建表格
  * @private method addRow(): 添加一行表格
@@ -14,7 +14,7 @@ export default function Table(audioWave, timeSlice){
     // timeSlice 处于下面的函数的闭包
 
     // 下面的方法都是共有方法，外部可以直接调用
-    this.init = function() {
+    this.show = function() {
         addTable()
         addExportJsonEvent(timeSlice)
     }

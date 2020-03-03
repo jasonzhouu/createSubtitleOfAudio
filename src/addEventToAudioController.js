@@ -1,4 +1,4 @@
-export default function addAudioController(audioWave) {
+export default function addEventToAudioController(audioWave) {
     $("#play").on("click", function () {
         audioWave.playPause();
     });

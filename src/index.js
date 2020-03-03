@@ -1,7 +1,7 @@
 import TimeSlice from './TimeSlice.js'
 import Table from './Table.js'
 import disableNewRowButton from './disableAddNewRow.js'
-import addAudioController from './audioController.js'
+import addEventToAudioController from './addEventToAudioController.js'
 import addPopOver from './popover.js'
 import showAudioWave from './showAudioWave.js'
 
@@ -14,9 +14,9 @@ function AudioPage() {
         const audioWave = showAudioWave(audioName + '1.mp3')
         var timeSlice = new TimeSlice(audioName)
         var table = new Table(audioWave, timeSlice)
-        table.init()
+        table.show()
         
-        addAudioController(audioWave)
+        addEventToAudioController(audioWave)
         addPopOver()
         
         // add new row
