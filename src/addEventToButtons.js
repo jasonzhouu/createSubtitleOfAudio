@@ -21,20 +21,6 @@ function addNewRowEvent(timeSlice, table) {
     })
 }
 
-let option = {
-    content: "",
-    trigger: "hover",
-    placement: "auto",
-}
-
-function addPopOver() {
-    $("#saveToJsonFile").popover({
-        ...option,
-        content: "将字幕保存到JSON文件",
-    })
-}
-
-
 export function addEventToButtons(audioWave, timeSlice, table) {
 
     // @todo: 切换文件时，清除注册的这2个事件
