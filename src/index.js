@@ -1,6 +1,6 @@
 import TimeSlice from './TimeSlice.js'
 import Table from './Table.js'
-import addEventToButtons from './addEventToButtons.js'
+import {addEventToButtons, clearEventToButtons} from './addEventToButtons.js'
 import showAudioWave from './showAudioWave.js'
 
 /*
@@ -8,9 +8,10 @@ import showAudioWave from './showAudioWave.js'
 */
 function AudioPage() {
     let audioWave = null
+    let table = null
 
     this.show = function (audioName) {
-        // 销毁之前的音频波，如果存在的话
+        // 销毁之前的音频波，如果存在的话；清除按钮注册的事件。
         destroy()
         // 显示音频波
         audioWave = showAudioWave(audioName + '.mp3')
@@ -19,7 +20,7 @@ function AudioPage() {
         let timeSlice = new TimeSlice(audioName)
 
         // 显示表格
-        let table = new Table(audioWave, timeSlice)
+        table = new Table(audioWave, timeSlice)
         table.show()
 
         // 给按钮添加事件
@@ -31,6 +32,11 @@ function AudioPage() {
         if (audioWave != null) {
             audioWave.destroy()
         }
+        if(table != null) {
+            table.clear()
+        }
+
+        clearEventToButtons()
     }
 }
 
