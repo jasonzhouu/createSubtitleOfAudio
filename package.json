@@ -4,7 +4,8 @@
   "description": "用于给英语音频分句",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "cloc": "cloc . --exclude-dir=node_modules,static"
   },
   "repository": {
     "type": "git",
