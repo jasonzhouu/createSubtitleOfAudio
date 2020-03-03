@@ -52,16 +52,15 @@ export default function TimeSlice() {
     }
 
     // 私有函数：init(), 从electron store中读取数据
-    function init(that)
+    function init()
     {
-        let self = that
         let storeData = electronStore.get();
-        storeData.forEach(function(element) {
+        storeData.forEach(element => {
             // 将每个对象都转成Proxy，从而监听更改事件
             // 保存到store、以及控制new row button的有效与否
             // 这一行需要放在 this.addNewSlice() 函数定义后面
-            self.addNewSlice(element)
+            this.addNewSlice(element)
         })
     }
-    init(this)
+    init.apply(this)
 }
