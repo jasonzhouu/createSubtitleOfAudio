@@ -1,11 +1,10 @@
-export default class ElectronStore {
-    constructor() {
-        this.store = new Store()
-    }
-    get() {
+export default function ElectronStore() {
+    // 私有变量，store只在这里可以访问
+    const store = new Store()
+
+    // 公有方法：get, save
+    this.get = function() {
         let timeSlice = []
-        const store = new Store()
-        
         timeSlice = store.get('xwz')
         if(timeSlice == undefined) {
             return []
@@ -14,7 +13,7 @@ export default class ElectronStore {
         return timeSlice
     }
 
-    save(timeSlice) {
-        this.store.set('xwz', timeSlice)
+    this.save = function() {
+        store.set('xwz', timeSlice)
     }
 }
