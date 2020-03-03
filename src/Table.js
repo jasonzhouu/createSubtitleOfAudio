@@ -11,6 +11,9 @@ export default function Table(audioWave, timeSlice){
     // 这里的timeSlice是对外面的timeSlice的引用，当外部的timeSlice发生任何更改，这里的timeSlice也会相应改变
     // timeSlice 处于下面的函数的闭包
 
+    // 每次新创建 table 时，都先清除已有行，否则它们会继续存在
+    clear()
+
     // 下面的方法都是共有方法，外部可以直接调用
     this.show = function() {
         addTable()
@@ -21,7 +24,7 @@ export default function Table(audioWave, timeSlice){
         addTable()
     }
 
-    this.clear = function() {
+    function clear() {
         $("#timeSliceTable table tbody").html('')
     }
 

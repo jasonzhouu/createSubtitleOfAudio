@@ -32,9 +32,6 @@ function AudioPage() {
         if (audioWave != null) {
             audioWave.destroy()
         }
-        if(table != null) {
-            table.clear()
-        }
 
         clearEventToButtons()
     }
