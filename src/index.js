@@ -18,3 +18,6 @@ $('#closeAudioList').click(function() {
     $('#audioList').hide()
     $('#audioPage').show()
 })
+$('#audioList ul li').click(function() {
+    console.log($('li').index($(this)) + 1)
+})
