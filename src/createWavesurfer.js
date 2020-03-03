@@ -1,8 +1,8 @@
-export default function createWaveSurfer() {
+export default function createWaveSurfer(filename) {
     var wavesurfer = WaveSurfer.create({
         container: '#waveform'
     });
-    wavesurfer.load('../xwz1.mp3');
+    wavesurfer.load(`../${filename}`);
     wavesurfer.on('ready', function () {
         // 启动时自动播放
         // wavesurfer.play();

@@ -5,7 +5,7 @@ import addAudioController from './audioController.js'
 import addPopOver from './popover.js'
 import createWaveSurfer from './createWavesurfer.js'
 
-const wavesurfer = createWaveSurfer()
+const wavesurfer = createWaveSurfer('xwz1.mp3')
 
 var timeSlice = new TimeSlice('xwz')
 var table = new Table(wavesurfer, timeSlice)
