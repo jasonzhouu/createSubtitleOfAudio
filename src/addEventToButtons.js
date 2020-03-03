@@ -23,11 +23,8 @@ function addNewRowEvent(timeSlice, table) {
 
 function addEventToButtons(audioWave, timeSlice, table) {
 
-    // @todo: 切换文件时，清除注册的这2个事件
     addEventToAudioController(audioWave)
     addNewRowEvent(timeSlice, table)
-
-    // addPopOver()
 }
 
 var buttonList = [
