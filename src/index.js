@@ -6,18 +6,18 @@ import showAudioWave from './showAudioWave.js'
 /*
 * @public method: play(audioName)
 */
-function AudioPage() {
+function AudioPage(audioName) {
+    var timeSlice = new TimeSlice(audioName)
     
-    this.show = function(audioName) {
+    this.show = function() {
         const audioWave = showAudioWave(audioName + '1.mp3')
-        var timeSlice = new TimeSlice(audioName)
         var table = new Table(audioWave, timeSlice)
         table.show()
         
-        addEventToButtons(audioWave, timeSlice)
+        addEventToButtons(audioWave, timeSlice, table)
 
     }
 }
 
-var audioPage = new AudioPage()
-audioPage.show('xwz')
+var audioPage = new AudioPage('xwz')
+audioPage.show()

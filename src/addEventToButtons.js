@@ -1,3 +1,5 @@
+import disableNewRowButton from './disableAddNewRow.js'
+
 function addEventToAudioController(audioWave) {
     $("#play").on("click", function () {
         audioWave.playPause();
@@ -23,7 +25,7 @@ function addExportJsonEvent(timeSlice) {
     })
 }
 
-function addNewRowEvent(timeSlice) {
+function addNewRowEvent(timeSlice, table) {
     // add new row
     $('#addSlice').click(function () {
         timeSlice.addNewSlice()
@@ -46,9 +48,9 @@ function addPopOver() {
 }
 
 
-export default function addEventToButtons(audioWave, timeSlice) {
+export default function addEventToButtons(audioWave, timeSlice, table) {
     addEventToAudioController(audioWave)
     addExportJsonEvent(timeSlice)
-    addNewRowEvent(timeSlice)
+    addNewRowEvent(timeSlice, table)
     addPopOver()
 }
