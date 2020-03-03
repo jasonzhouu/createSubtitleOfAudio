@@ -21,6 +21,10 @@ export default function Table(audioWave, timeSlice){
         addTable()
     }
 
+    this.clear = function() {
+        $("#timeSliceTable table tbody").html('')
+    }
+
     // 下面的都是私有方法，外部无法直接调用
     function addTable() {
         timeSlice.get().forEach((element, index) => {
