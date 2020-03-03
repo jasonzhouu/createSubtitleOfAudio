@@ -27,3 +27,8 @@ $('#audioList ul li').click(function() {
     $('#audioPage').show()
     audioPage.play()
 })
+
+$('#audioList button#addAudio').click(function() {
+    console.log('click');
+    
+})
