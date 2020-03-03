@@ -11,28 +11,45 @@
 </head>
 
 <body>
-    <div id="waveform"></div>
-    <section id="audioController">
-        <button id="backward">退5秒</button>
-        <button id="play">播放</button>
-        <button id="forward">进5秒</button>
-    </section>
 
-    <section id="timeSliceTable">
-        <table class="table table-striped" style="margin-bottom: 0;">
-            <thead>
-                <tr>
-                    <th scope="col" width="50px">#</th>
-                    <th scope="col" width="100px">句子开始时间</th>
-                    <th scope="col" width="100px">句子结束时间</th>
-                    <th scope="col">字幕</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <button id="addSlice">+</button>
-    </section>
+    <div id="audioList">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <button id="closeAudioList">×</button>
+    </div>
+
+    <div id="audioPage">
+        <!-- 音频波 -->
+        <div id="waveform"></div>
+
+        <!-- 分句表 -->
+        <section id="timeSliceTable">
+            <table class="table table-striped" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th scope="col" width="50px">#</th>
+                        <th scope="col" width="100px">句子开始时间</th>
+                        <th scope="col" width="100px">句子结束时间</th>
+                        <th scope="col">字幕</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <button id="addSlice">+</button>
+        </section>
+
+        <!-- 底部的按钮，用于控制音频播放 -->
+        <section id="audioController">
+            <button id="showAudioList">音频列表</button>
+            <button id="backward">退5秒</button>
+            <button id="play">播放</button>
+            <button id="forward">进5秒</button>
+        </section>
+    </div>
 
     <!-- 第三方库：jquery, boostrap, wavesurfer -->
     <script src="../static/jquery-3.4.1.js"></script>

@@ -62,3 +62,15 @@ section#timeSliceTable{
     height: calc(100vh - 128px - 84px);
     overflow: scroll;
 }
+
+div#audioList {
+    display: none;
+    width: 100%;
+    height: calc(100vh - 84px);
+}
+
+div#closeAudioList {
+    display: absolute;
+    top: 0px;
+    right: 0px;
+}
