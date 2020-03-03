@@ -1,8 +1,6 @@
 import TimeSlice from './TimeSlice.js'
 import Table from './Table.js'
-import disableNewRowButton from './disableAddNewRow.js'
-import addEventToAudioController from './addEventToAudioController.js'
-import addPopOver from './popover.js'
+import addEventToButtons from './addEventToButtons.js'
 import showAudioWave from './showAudioWave.js'
 
 /*
@@ -16,15 +14,8 @@ function AudioPage() {
         var table = new Table(audioWave, timeSlice)
         table.show()
         
-        addEventToAudioController(audioWave)
-        addPopOver()
-        
-        // add new row
-        $('#addSlice').click(function() {
-            timeSlice.addNewSlice()
-            table.refresh()
-            disableNewRowButton(timeSlice.getLastSlice())
-        })
+        addEventToButtons(audioWave, timeSlice)
+
     }
 }
 
