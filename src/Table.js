@@ -1,6 +1,3 @@
-import wavesurfer from './wavesurfer.js'
-
-
 /*
  * 作用：创建表格
  * @param timeSlice: 表格数据
@@ -10,7 +7,7 @@ import wavesurfer from './wavesurfer.js'
  * @private method addRow(): 添加一行表格
  * @private method addEvent(): 给表格添加事件
  */
-export default function Table(timeSlice){
+export default function Table(wavesurfer, timeSlice){
     // 这里的timeSlice是对外面的timeSlice的引用，当外部的timeSlice发生任何更改，这里的timeSlice也会相应改变
     // timeSlice 处于下面的函数的闭包
 

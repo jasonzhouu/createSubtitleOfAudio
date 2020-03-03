@@ -1,6 +1,4 @@
-import wavesurfer from './wavesurfer.js'
-
-export default function addAudioController() {
+export default function addAudioController(wavesurfer) {
     $("#play").on("click", function () {
         wavesurfer.playPause();
     });

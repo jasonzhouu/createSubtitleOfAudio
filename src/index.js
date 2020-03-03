@@ -3,12 +3,15 @@ import Table from './Table.js'
 import disableNewRowButton from './disableAddNewRow.js'
 import addAudioController from './audioController.js'
 import addPopOver from './popover.js'
+import createWaveSurfer from './createWavesurfer.js'
+
+const wavesurfer = createWaveSurfer()
 
 var timeSlice = new TimeSlice('xwz')
-
-var table = new Table(timeSlice)
+var table = new Table(wavesurfer, timeSlice)
 table.init()
-addAudioController()
+
+addAudioController(wavesurfer)
 addPopOver()
 
 // add new row
