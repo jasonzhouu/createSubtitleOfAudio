@@ -6,26 +6,34 @@ import showAudioWave from './showAudioWave.js'
 /*
 * @public method: play(audioName)
 */
-function AudioPage(audioName) {
-    // 显示音频波
-    const audioWave = showAudioWave(audioName + '.mp3')
-    // 初始化分句数据
-    let timeSlice = new TimeSlice(audioName)
+function AudioPage() {
+    let audioWave = null
 
-    let table = new Table(audioWave, timeSlice)
-    
-    this.show = function() {
+    this.show = function (audioName) {
+        // 销毁之前的音频波，如果存在的话
+        destroy()
+        // 显示音频波
+        audioWave = showAudioWave(audioName + '.mp3')
+
+        // 初始化分句数据
+        let timeSlice = new TimeSlice(audioName)
+
         // 显示表格
+        let table = new Table(audioWave, timeSlice)
         table.show()
+
         // 给按钮添加事件
         addEventToButtons(audioWave, timeSlice, table)
     }
 
-    this.destroy = function() {
-        audioWave.destroy()
-        table.clear()
+    // 私有函数
+    function destroy() {
+        if (audioWave != null) {
+            audioWave.destroy()
+        }
     }
 }
 
-var audioPage = new AudioPage('xwz1')
-audioPage.show()
+var audioPage = new AudioPage()
+audioPage.show('xwz1')
+
