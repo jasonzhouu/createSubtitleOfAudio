@@ -7,7 +7,7 @@ import addPopOver from './popover.js'
 var timeSlice = initTimeSlice()
 
 var table = new Table(timeSlice)
-
+table.init()
 addAudioController()
 addPopOver()
 
