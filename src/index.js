@@ -8,7 +8,7 @@ import showAudioWave from './showAudioWave.js'
 */
 function AudioPage(audioName) {
     // 显示音频波
-    const audioWave = showAudioWave(audioName + '1.mp3')
+    const audioWave = showAudioWave(audioName + '.mp3')
     // 初始化分句数据
     let timeSlice = new TimeSlice(audioName)
 
@@ -27,5 +27,5 @@ function AudioPage(audioName) {
     }
 }
 
-var audioPage = new AudioPage('xwz')
+var audioPage = new AudioPage('xwz1')
 audioPage.show()

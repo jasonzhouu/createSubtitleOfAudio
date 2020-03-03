@@ -15,6 +15,6 @@ export default function ElectronStore(audioName) {
     }
 
     this.save = function(timeSlice) {
-        store.set('xwz', timeSlice)
+        store.set(audioName, timeSlice)
     }
 }
