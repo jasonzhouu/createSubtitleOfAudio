@@ -1,20 +1,20 @@
-export default function ElectronStore() {
-    this.store = new Store()
-}
-
-
-ElectronStore.prototype.get = function() {
-    let timeSlice = []
-    const store = new Store()
+export default class ElectronStore {
+    constructor() {
+        this.store = new Store()
+    }
+    get() {
+        let timeSlice = []
+        const store = new Store()
+        
+        timeSlice = store.get('xwz')
+        if(timeSlice == undefined) {
+            return []
+        }
     
-    timeSlice = store.get('xwz')
-    if(timeSlice == undefined) {
-        return []
+        return timeSlice
     }
 
-    return timeSlice
-}
-
-ElectronStore.prototype.save = function(timeSlice) {
-    this.store.set('xwz', timeSlice)
+    save(timeSlice) {
+        this.store.set('xwz', timeSlice)
+    }
 }
