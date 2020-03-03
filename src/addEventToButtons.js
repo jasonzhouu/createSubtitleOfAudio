@@ -21,7 +21,7 @@ function addNewRowEvent(timeSlice, table) {
     })
 }
 
-export function addEventToButtons(audioWave, timeSlice, table) {
+function addEventToButtons(audioWave, timeSlice, table) {
 
     // @todo: 切换文件时，清除注册的这2个事件
     addEventToAudioController(audioWave)
@@ -37,8 +37,14 @@ var buttonList = [
     'addSlice'
 ]
 
-export function clearEventToButtons() {
+function clearEventToButtons() {
     buttonList.forEach(element => {
         $('#'+element).off('click')
     })
+}
+
+
+export {
+    addEventToButtons,
+    clearEventToButtons
 }
