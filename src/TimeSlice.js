@@ -58,9 +58,9 @@ export default function TimeSlice() {
         storeData.forEach(element => {
             // 将每个对象都转成Proxy，从而监听更改事件
             // 保存到store、以及控制new row button的有效与否
-            // 这一行需要放在 this.addNewSlice() 函数定义后面
             this.addNewSlice(element)
         })
     }
+    // 这一行需要放在 this.addNewSlice() 函数定义后面，因为init()调用了 this.addNewSlice() 
     init.apply(this)
 }
