@@ -12,6 +12,7 @@ import wavesurfer from './wavesurfer.js'
  */
 export default function Table(timeSlice){
     // 这里的timeSlice是对外面的timeSlice的引用，当外部的timeSlice发生任何更改，这里的timeSlice也会相应改变
+    // timeSlice 处于下面的函数的闭包
 
     // 下面的方法都是共有方法，外部可以直接调用
     this.init = function() {
