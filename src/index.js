@@ -84,6 +84,8 @@ function getAudioFileList() {
 
 // 2。展示文件列表
 function showAudioList() {
+    // 先要清理，否则后续运行时，将在原有的基础上新添
+    $('#audioList ul').html('')
     for(var audioFileName of audioFileList) {
         $('#audioList ul').append(
             $('<li></li>').html(audioFileName)
