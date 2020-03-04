@@ -4,21 +4,21 @@ import {addEventToButtons, clearEventToButtons} from './addEventToButtons.js'
 import showAudioWave from './showAudioWave.js'
 
 /*
- * @public method: show(audioName)
+ * @public method: show(audioFileName)
  * @private method: destroy() 将已有的页面清除
 */
 export default function AudioPage() {
     let audioWave = null
     let table = null
 
-    this.show = function (audioName) {
+    this.show = function (audioFileName) {
         // 销毁之前的音频波，如果存在的话；清除按钮注册的事件。
         clearAudioPage()
         // 显示音频波
-        audioWave = showAudioWave(audioName + '.mp3')
+        audioWave = showAudioWave(audioFileName)
 
         // 初始化分句数据
-        let timeSlice = new TimeSlice(audioName)
+        let timeSlice = new TimeSlice(audioFileName)
 
         // 显示表格
         table = new Table(audioWave, timeSlice)

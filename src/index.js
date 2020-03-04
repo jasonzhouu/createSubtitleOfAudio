@@ -4,6 +4,7 @@ import AudioPage from './AudioPage.js'
 const audioPage = new AudioPage()
 var audioFileList 
 
+// 启动时，展示音频文件列表
 getAudioFileList()
 showAudioList()
 
@@ -22,10 +23,11 @@ $('#closeAudioList').click(function () {
 
 // 点击音频列表，播放相应的文件，并隐藏音频列表
 $('#audioList ul li').click(function () {
-    // @todo: 获取音频文件名
-    let index = ($('li').index($(this)) + 1)
-    // @todo: 将音频文件名除去 .mp3 后缀
-    audioPage.show('xwz' + index)
+    // @done: 获取音频文件名。2种方法：
+    // √ 1。从DOM中读取
+    //   2。先获得DOM的序号，然后从audioFileList数组中读取
+    let audioFileName = $(this).html()
+    audioPage.show(audioFileName)
     $('#audioList').hide()
     $('#audioPage').show()
     audioPage.play()

@@ -54,3 +54,12 @@ ipcMain.on('getAudioFileList', (event, arg) => {
         event.returnValue = files
     })
 })
+
+
+
+
+
+// ipc: 获取 userDataPath
+ipcMain.on('getUserDataPath', event => {
+    event.returnValue = userDataPath
+})
