@@ -29,14 +29,12 @@ $('#audioList button#addAudio').click(function () {
 
 })
 
-const inputElement = document.getElementById("audioUploader");
-inputElement.addEventListener("change", handleFiles, false);
-function handleFiles() {
+$('#audioUploader').on('change', function() {
     const fileList = this.files;
-    console.log(fileList);
+    console.log(fileList)
     for (const file of fileList) {
         // electron 的渲染进程比浏览器的File API多了path属性，即文件的路径
         // https://www.electronjs.org/docs/api/file-object
         console.log(file.path);
     }
-}
+})
