@@ -2,6 +2,9 @@ const path = require('path')
 const { app, BrowserWindow, ipcMain } = require('electron')
 const fs = require('fs')
 
+const userDataPath = app.getPath("userData")
+const audioFilesPath = path.join(userDataPath, 'audioFiles')
+
 function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 1000,
@@ -39,9 +42,15 @@ ipcMain.on('uploadAudioFile', (event, {sourcePath, fileName}) => {
 })
 
 function uploadAudioFile(sourcePath, fileName) {
-    const userDataPath = app.getPath("userData")
-    let destinationPath = path.join(userDataPath, 'audioFiles', fileName)
+    let destinationPath = path.join(audioFilesPath, fileName)
     fs.copyFile(sourcePath, destinationPath, (err) => {
         if(err) throw err
     })
 }
+
+ipcMain.on('getAudioFileList', (event, arg) => {
+    // @done: 读取audio path下的文件列表
+    fs.readdir(audioFilesPath, function(err, files) {
+        event.returnValue = files
+    })
+})
