@@ -2,10 +2,12 @@ import AudioPage from './AudioPage.js'
 
 
 const audioPage = new AudioPage()
+var audioFileList 
 
+getAudioFileList()
+showAudioList()
 
-audioPage.show('xwz1')
-
+// 切换显示音频列表
 $('#showAudioList').click(function () {
     $('#audioList').show()
     $('#audioPage').hide()
@@ -15,9 +17,14 @@ $('#closeAudioList').click(function () {
     $('#audioPage').show()
 })
 
+
+
+
 // 点击音频列表，播放相应的文件，并隐藏音频列表
 $('#audioList ul li').click(function () {
+    // @todo: 获取音频文件名
     let index = ($('li').index($(this)) + 1)
+    // @todo: 将音频文件名除去 .mp3 后缀
     audioPage.show('xwz' + index)
     $('#audioList').hide()
     $('#audioPage').show()
@@ -57,6 +64,7 @@ function uploadAudioFile(sourcePath, fileName) {
 ipcRenderer.on('uploadAudioFileStatus', (event, arg) => {
     console.log("upload audio file: " + arg)
     getAudioFileList()
+    showAudioList()
 })
 
 
@@ -69,8 +77,14 @@ ipcRenderer.on('uploadAudioFileStatus', (event, arg) => {
 // 由于渲染进程无法读取文件系统，所以得通过ipc向主进程请求
 
 function getAudioFileList() {
-    let audioFileList = ipcRenderer.sendSync('getAudioFileList')
-    console.log(audioFileList);
+    audioFileList = ipcRenderer.sendSync('getAudioFileList')
 }
 
 // 2。展示文件列表
+function showAudioList() {
+    for(var audioFileName of audioFileList) {
+        $('#audioList ul').append(
+            $('<li></li>').html(audioFileName)
+        )
+    }
+}

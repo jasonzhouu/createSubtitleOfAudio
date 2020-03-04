@@ -2,6 +2,7 @@ export default function showAudioWave(filename) {
     var audioWave = WaveSurfer.create({
         container: '#waveform'
     });
+    // @todo: 从 user data path 读取音频文件
     audioWave.load(`../${filename}`);
     /*
      * 订阅播放/暂停事件
