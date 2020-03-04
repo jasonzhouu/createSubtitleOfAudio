@@ -15,7 +15,7 @@ export default function ElectronStore(audioName) {
     }
 
     this.save = function(timeSlice) {
-        // @todo: 将audioName取出文件名后缀。不去除也可以。
+        // @done: 去除文件名后缀, AudioPage 下的 trimSuffix()
         store.set(audioName, timeSlice)
     }
 }

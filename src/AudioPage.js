@@ -12,13 +12,15 @@ export default function AudioPage() {
     let table = null
 
     this.show = function (audioFileName) {
+        let audioName = trimSuffix(audioFileName)
+
         // 销毁之前的音频波，如果存在的话；清除按钮注册的事件。
         clearAudioPage()
         // 显示音频波
         audioWave = showAudioWave(audioFileName)
 
         // 初始化分句数据
-        let timeSlice = new TimeSlice(audioFileName)
+        let timeSlice = new TimeSlice(audioName)
 
         // 显示表格
         table = new Table(audioWave, timeSlice)
@@ -41,5 +43,9 @@ export default function AudioPage() {
         }
 
         clearEventToButtons()
+    }
+
+    function trimSuffix(filename) {
+        return filename.split('/').slice(0, -1).join()
     }
 }
