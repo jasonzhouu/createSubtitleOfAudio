@@ -31,10 +31,20 @@ $('#audioList button#addAudio').click(function () {
 
 $('#audioUploader').on('change', function() {
     const fileList = this.files;
-    console.log(fileList)
     for (const file of fileList) {
         // electron 的渲染进程比浏览器的File API多了path属性，即文件的路径
         // https://www.electronjs.org/docs/api/file-object
-        console.log(file.path);
+        console.log(file);
+        uploadAudioFile(file.path, file.name)
     }
+})
+
+function uploadAudioFile(sourcePath, fileName) {
+    ipcRenderer.send('uploadAudioFile', {
+        sourcePath,
+        fileName
+    })
+}
+ipcRenderer.on('uploadAudioFileStatus', (event, arg) => {
+    console.log("upload audio file: " + arg)
 })
